@@ -29,10 +29,10 @@ public class JDBCDespesaDAO implements DespesaDAO {
 			String SQL = "INSERT INTO despesas_diversas values (?, ?, ?, ?)";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			
-			Date dataSQL = DateConverter.convertToDatabaseColumn(despesa.getData());
+		
 			ps.setInt(1, despesa.getId());
 			ps.setString(2, despesa.getDescricao());
-			ps.setDate(3, new Date(dataSQL.getTime()));
+			ps.setDate(3, new Date(DateConverter.convertToDatabaseColumn(despesa.getData()).getTime()));
 			ps.setDouble(4, despesa.getValor());
 			ps.executeUpdate();
 			
@@ -85,13 +85,40 @@ public class JDBCDespesaDAO implements DespesaDAO {
 
 	@Override
 	public Despesa buscar(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		try{
+			String SQL = "SELECT * FROM despesas_diversas where id = ?";
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			Despesa despesa = new Despesa();
+			despesa.setId(rs.getInt("id"));
+			despesa.setDescricao(rs.getString("descricao"));
+			despesa.setData(DateConverter.convertToEntityAttribute(rs.getDate("data")));
+			despesa.setValor(rs.getDouble("valor"));
+			
+			return despesa;
+		}catch(SQLException ex){
+			Logger.getLogger(JDBCClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+			return null;
+		}
 	}
 
 	@Override
 	public void editar(Despesa despesa) {
-		// TODO Auto-generated method stub
+		try{
+			String SQL = "UPDATE despesas_diversas set descricao = ?, data = ?, valor = ? where id = ? ";
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			
+			ps.setInt(4, despesa.getId());
+			ps.setString(1, despesa.getDescricao());
+			ps.setDate(2, new Date(DateConverter.convertToDatabaseColumn(despesa.getData()).getTime()));
+			ps.setDouble(3, despesa.getValor());
+			ps.executeUpdate();
+			
+		}catch(SQLException ex){
+			Logger.getLogger(JDBCClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		
 	}
 }
