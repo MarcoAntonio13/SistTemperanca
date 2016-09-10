@@ -6,7 +6,9 @@ import java.sql.Date;
 
 import converter.DateConverter;
 import dao.jdbc.JDBCDespesaDAO;
+import dao.jdbc.JDBCRendaDAO;
 import model.Despesa;
+import model.Renda;
 
 
 public class Main {
@@ -14,11 +16,19 @@ public class Main {
 	public static void main (String[]args){
 		
 		LocalDate data = LocalDate.of(2010, 4 , 20);
-				
-		Despesa despesa = new Despesa(19, "Oeeee", data , 3000.67);
-		JDBCDespesaDAO daoDespesa = new JDBCDespesaDAO();
+//		JDBCDespesaDAO daoDespesa = new JDBCDespesaDAO();
+//		daoDespesa.remover(19);
+//				
+		
+		Renda renda = new Renda(11, "A mulher ", 1560.23 , data, "Salário da Mulher");
+		JDBCRendaDAO daoRenda = new JDBCRendaDAO();
 
-		daoDespesa.inserir(despesa);
+//		daoRenda.inserir(renda);
+//		daoRenda.remover(11);
+//		daoRenda.listar().forEach(action -> System.out.println(action.getDescricao() + action.getData()));
+//		System.out.println(daoRenda.buscar(11).getNome());
+		daoRenda.editar(renda);
+		
 //		daoDespesa.listar().forEach(action -> System.out.println(action.getData()));
 //		daoDespesa.editar(despesa);
 //		System.out.println(daoFormaPagamento.buscar(2).getNome());

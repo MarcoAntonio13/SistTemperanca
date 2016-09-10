@@ -45,7 +45,7 @@ public class JDBCDespesaDAO implements DespesaDAO {
 	@Override
 	public void remover(int id) {
 		try{
-			String SQL = "DELETE FROM despesa WHERE id= ?";
+			String SQL = "DELETE FROM despesas_diversas WHERE id= ?";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			
 			ps.setInt(1, id);

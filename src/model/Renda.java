@@ -1,19 +1,19 @@
 package model;
 
-import java.util.Calendar;
+import java.time.LocalDate;
 
 public class Renda {
 	private Integer id;
 	private String descricao;
 	private Double valor;
-	private Calendar data;
+	private LocalDate data;
 	private String nome;
 
 	public Renda() {
 
 	}
 
-	public Renda(Integer id, String descricao, Double valor, Calendar data, String nome) {
+	public Renda(Integer id, String descricao, Double valor, LocalDate data, String nome) {
 		super();
 		this.id = id;
 		this.descricao = descricao;
@@ -46,11 +46,11 @@ public class Renda {
 		this.valor = valor;
 	}
 
-	public Calendar getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(Calendar data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
 
