@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="telaPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MenuInicialController">
+   <children>
+      <BorderPane fx:id="principalBorderPane" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+              <menus>
+                <Menu mnemonicParsing="false" text="Cadastros">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Cadastro de Fornecedor" />
+                        <MenuItem mnemonicParsing="false" text="Cadastro de Tempero" />
+                        <MenuItem mnemonicParsing="false" onAction="#abrirCadastroMaterial" text="Cadastro de Materiais" />
+                        <MenuItem mnemonicParsing="false" text="Cadastro de Cliente" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Relatórios">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Relatorio Margem Lucro" />
+                        <MenuItem mnemonicParsing="false" text="Relatorio de Produtos" />
+                        <MenuItem mnemonicParsing="false" text="Relatorio Lucro e Despesas" />
+                        <MenuItem mnemonicParsing="false" text="Relatorio Venda por Produto" />
+                        <MenuItem mnemonicParsing="false" text="Relatorio Geral de Venda por Periodo" />
+                        <MenuItem mnemonicParsing="false" text="Relatorio de Venda por Cliente" />
+                     </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Registros">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Registrar Despesas" />
+                        <MenuItem mnemonicParsing="false" text="Registrar Outras Rendas" />
+                  </items>
+                </Menu>
+                  <Menu mnemonicParsing="false" text="Vendas">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Vender" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Produção">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Produzir Tempero" />
+                     </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Lançamento">
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Lançamento de Venda" />
+                        <MenuItem mnemonicParsing="false" text="Lançamento de Material" />
+                     </items>
+                  </Menu>
+              </menus>
+            </MenuBar>
+         </top>
+         <center>
+            <TabPane fx:id="tabPane" prefHeight="373.0" prefWidth="600.0" tabClosingPolicy="ALL_TABS" BorderPane.alignment="CENTER">
+              <tabs>
+                <Tab text="Untitled Tab 1">
+                     <content>
+                        <BorderPane prefHeight="200.0" prefWidth="200.0" />
+                     </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>
