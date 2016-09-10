@@ -1,6 +1,7 @@
 package dao.jdbc;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,7 +18,6 @@ import model.Despesa;
 public class JDBCDespesaDAO implements DespesaDAO {
 	
 	private Connection connection;
-	private DateConverter converter;
 	public JDBCDespesaDAO() {
 		
 		connection = ConnectionFactory.getConnection();
@@ -29,9 +29,10 @@ public class JDBCDespesaDAO implements DespesaDAO {
 			String SQL = "INSERT INTO despesas_diversas values (?, ?, ?, ?)";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			
+			Date dataSQL = DateConverter.convertToDatabaseColumn(despesa.getData());
 			ps.setInt(1, despesa.getId());
 			ps.setString(2, despesa.getDescricao());
-			ps.setDate(3, converter.localDateConvert(despesa.getData()));
+			ps.setDate(3, new Date(dataSQL.getTime()));
 			ps.setDouble(4, despesa.getValor());
 			ps.executeUpdate();
 			
@@ -60,7 +61,7 @@ public class JDBCDespesaDAO implements DespesaDAO {
 	@Override
 	public List<Despesa> listar() {
 		try{
-			String SQL = "SELECT * FROM despesa";
+			String SQL = "SELECT * FROM despesas_diversas";
 			List<Despesa> despesas = new ArrayList<Despesa>();
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();
@@ -69,7 +70,7 @@ public class JDBCDespesaDAO implements DespesaDAO {
 				Despesa despesa = new Despesa();
 				despesa.setId(rs.getInt("id"));
 				despesa.setDescricao(rs.getString("descricao"));
-				despesa.setData(converter.dateConvert(rs.getDate("data")));
+				despesa.setData(DateConverter.convertToEntityAttribute(rs.getDate("data")));
 				despesa.setValor(rs.getDouble("valor"));
 				
 				despesas.add(despesa);
