@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Fornecedor {
 	private Integer id;
-	private Integer cnpj;
+	private String cnpj;
 	private String razaoSocial;
-	private String telefone;
+	private Long telefone;
 	private String email;
 	private List<VendedorFornecedor> vendedores;
 
@@ -14,7 +14,7 @@ public class Fornecedor {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Fornecedor(Integer id, Integer cnpj, String razaoSocial, String telefone, String email,
+	public Fornecedor(Integer id, String cnpj, String razaoSocial, Long telefone, String email,
 			List<VendedorFornecedor> vendedores) {
 		super();
 		this.id = id;
@@ -33,11 +33,11 @@ public class Fornecedor {
 		this.id = id;
 	}
 
-	public Integer getCnpj() {
+	public String getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(Integer cnpj) {
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
 
@@ -49,11 +49,11 @@ public class Fornecedor {
 		this.razaoSocial = razaoSocial;
 	}
 
-	public String getTelefone() {
+	public Long getTelefone() {
 		return telefone;
 	}
 
-	public void setTelefone(String telefone) {
+	public void setTelefone(Long telefone) {
 		this.telefone = telefone;
 	}
 
