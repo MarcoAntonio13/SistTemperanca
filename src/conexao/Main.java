@@ -43,8 +43,8 @@ public class Main {
 //		
 //		Fornecedor fornecedor = new Fornecedor(12, "23190850721398", "Não sei", 6934240106l, "iqwufhiq@fuhe.com", vendedoresFornecedores);
 		
-		JDBCFornecedorDAO daoFornecedo = new JDBCFornecedorDAO();
-		daoFornecedo.remover(11);
+//		JDBCFornecedorDAO daoFornecedo = new JDBCFornecedorDAO();
+//		daoFornecedo.remover(11);
 //		daoFornecedo.inserir(fornecedor);
 //		JDBCVendedorFornecedorDAO daoVendedorFornecedor = new JDBCVendedorFornecedorDAO();
 //		daoVendedorFornecedor.inserir(vendedorFornecedor);

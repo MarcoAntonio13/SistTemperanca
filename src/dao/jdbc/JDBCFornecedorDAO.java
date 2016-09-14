@@ -2,7 +2,9 @@ package dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -70,8 +72,27 @@ public class JDBCFornecedorDAO implements FornecedorDAO {
 
 	@Override
 	public List<Fornecedor> listar() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			String SQL = "SELECT * FROM fornecedor";
+			List<Fornecedor> fornecedores = new ArrayList<Fornecedor>();
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				Fornecedor fornecedor = new Fornecedor();
+				fornecedor.setId(rs.getInt("id"));
+				fornecedor.setCnpj(rs.getString("cnpj"));
+				fornecedor.setRazaoSocial(rs.getString("razao_social"));
+				fornecedor.setTelefone(rs.getLong("telefone"));
+				fornecedor.setEmail(rs.getString("email"));
+				fornecedores.add(fornecedor);
+			}
+			return fornecedores;
+
+		} catch (SQLException ex) {
+			Logger.getLogger(JDBCClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+			return null;
+		}
 	}
 
 	@Override
