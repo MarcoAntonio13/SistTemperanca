@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 import conexao.ConnectionFactory;
 import dao.dao.FornecedorDAO;
 import model.Fornecedor;
-import model.VendedorFornecedor;
 
 public class JDBCFornecedorDAO implements FornecedorDAO {
 
@@ -97,14 +96,57 @@ public class JDBCFornecedorDAO implements FornecedorDAO {
 
 	@Override
 	public Fornecedor buscar(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			String SQL = "SELECT * FROM fornecedor where id = ?";
+			PreparedStatement ps = connection.prepareStatement(SQL);
+			ps.setInt(1, id);
+			ResultSet rs = ps.executeQuery();
+			rs.next();
+			Fornecedor fornecedor = new Fornecedor();
+			fornecedor.setId(rs.getInt("id"));
+			fornecedor.setCnpj(rs.getString("cnpj"));
+			fornecedor.setRazaoSocial(rs.getString("razao_social"));
+			fornecedor.setTelefone(rs.getLong("telefone"));
+			fornecedor.setEmail(rs.getString("email"));
+			
+			return fornecedor;
+		} catch (SQLException ex) {
+			Logger.getLogger(JDBCClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+			return null;
+		}
 	}
 
 	@Override
 	public void editar(Fornecedor fornecedor) {
-		// TODO Auto-generated method stub
+		try {
+			String SQL = "UPDATE fornecedor set cnpj = ?, razao_social = ?, telefone = ?, email = ?   where id = ? ";
+			PreparedStatement ps = connection.prepareStatement(SQL);
 
+			ps.setInt(5, fornecedor.getId());
+			ps.setString(1, fornecedor.getCnpj());
+			ps.setString(2, fornecedor.getRazaoSocial());
+			ps.setLong(3, fornecedor.getTelefone());
+			ps.setString(4, fornecedor.getEmail());
+			ps.executeUpdate();
+			
+			SQL = "UPDATE vendedor_fornecedor SET id_fornecedor = ? where id = ?";
+			PreparedStatement ps2 = connection.prepareStatement(SQL);
+			fornecedor.getVendedores().forEach(vendedorFornecedor -> {
+
+				try {
+					ps2.setInt(1, fornecedor.getId());
+					ps2.setInt(2, vendedorFornecedor.getId());
+					ps2.executeUpdate();
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			});
+
+		} catch (SQLException ex) {
+			Logger.getLogger(JDBCClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+		}
 	}
 
 }
