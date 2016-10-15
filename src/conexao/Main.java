@@ -5,18 +5,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.UpdatableResultSet;
-
-import java.sql.Date;
-
-import converter.DateConverter;
-import dao.jdbc.JDBCDespesaDAO;
 import dao.jdbc.JDBCFornecedorDAO;
-import dao.jdbc.JDBCRendaDAO;
 import dao.jdbc.JDBCVendedorFornecedorDAO;
-import model.Despesa;
 import model.Fornecedor;
-import model.Renda;
 import model.VendedorFornecedor;
 
 
@@ -24,7 +15,7 @@ public class Main {
 	
 	public static void main (String[]args){
 		
-		LocalDate data = LocalDate.of(2010, 4 , 20);
+//		LocalDate data = LocalDate.of(2010, 4 , 20);
 //		JDBCDespesaDAO daoDespesa = new JDBCDespesaDAO();
 //		daoDespesa.remover(19);
 //				
@@ -44,11 +35,17 @@ public class Main {
 		vendedoresFornecedores.add(vendedorFornecedor4);
 		vendedoresFornecedores.add(vendedorFornecedor5);
 //		
-		Fornecedor fornecedor = new Fornecedor(5, "23190850721398", "Não sei", 6934240106l, "iqwufhiq@fuhe.com", vendedoresFornecedores);
+		Fornecedor fornecedor = new Fornecedor(null, "23190850721398", "Não sei", 6934240106l, "iqwufhiq@fuhe.com", vendedoresFornecedores);
 		
 		JDBCFornecedorDAO daoFornecedo = new JDBCFornecedorDAO();
+		JDBCVendedorFornecedorDAO daoVendedorFornecedor = new JDBCVendedorFornecedorDAO();
+		daoVendedorFornecedor.inserir(vendedorFornecedor);
+		daoVendedorFornecedor.inserir(vendedorFornecedor2);
+		daoVendedorFornecedor.inserir(vendedorFornecedor3);
+		daoVendedorFornecedor.inserir(vendedorFornecedor4);
+		daoVendedorFornecedor.inserir(vendedorFornecedor5);
 		
-		daoFornecedo.editar(fornecedor);
+		daoFornecedo.inserir(fornecedor);
 		
 //		daoFornecedo.inserir(fornecedor);
 //		JDBCVendedorFornecedorDAO daoVendedorFornecedor = new JDBCVendedorFornecedorDAO();

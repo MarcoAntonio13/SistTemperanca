@@ -24,17 +24,16 @@ public class JDBCFornecedorDAO implements FornecedorDAO {
 	@Override
 	public void inserir(Fornecedor fornecedor) {
 		try {
-			String SQL = "INSERT INTO fornecedor values (?, ?, ?, ?, ?)";
+			String SQL = "INSERT INTO fornecedor values (null, ?, ?, ?, ?)";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 
-			ps.setInt(1, fornecedor.getId());
-			ps.setString(2, fornecedor.getCnpj());
-			ps.setString(3, fornecedor.getRazaoSocial());
-			ps.setLong(4, fornecedor.getTelefone());
-			ps.setString(5, fornecedor.getEmail());
+			ps.setString(1, fornecedor.getCnpj());
+			ps.setString(2, fornecedor.getRazaoSocial());
+			ps.setLong(3, fornecedor.getTelefone());
+			ps.setString(4, fornecedor.getEmail());
 			ps.executeUpdate();
 
-			SQL = "UPDATE vendedor_fornecedor SET id_fornecedor = ? where id = ?";
+			SQL = "UPDATE vendedorFornecedor SET idfornecedor = ? where id = ?";
 			PreparedStatement ps2 = connection.prepareStatement(SQL);
 			fornecedor.getVendedores().forEach(vendedorFornecedor -> {
 

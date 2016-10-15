@@ -27,13 +27,12 @@ public class JDBCVendedorFornecedorDAO implements VendedorFornecedorDAO {
 	@Override
 	public void inserir(VendedorFornecedor vendedorFornecedor) {
 		try {
-			String SQL = "INSERT INTO vendedor_fornecedor values (?, ?, ?, ?, null)";
+			String SQL = "INSERT INTO vendedorFornecedor values (null, ?, ?, ?, null)";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 
-			ps.setInt(1, vendedorFornecedor.getId());
-			ps.setString(2, vendedorFornecedor.getNome());
-			ps.setLong(3, vendedorFornecedor.getTelefone());
-			ps.setString(4, vendedorFornecedor.getEmail());
+			ps.setString(1, vendedorFornecedor.getNome());
+			ps.setLong(2, vendedorFornecedor.getTelefone());
+			ps.setString(3, vendedorFornecedor.getEmail());
 			ps.executeUpdate();
 
 		} catch (SQLException ex) {
@@ -44,7 +43,7 @@ public class JDBCVendedorFornecedorDAO implements VendedorFornecedorDAO {
 	@Override
 	public void remover(int id) {
 		try {
-			String SQL = "DELETE FROM vendedor_fornecedor WHERE id= ?";
+			String SQL = "DELETE FROM vendedorFornecedor WHERE id= ?";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 
 			ps.setInt(1, id);
@@ -59,7 +58,7 @@ public class JDBCVendedorFornecedorDAO implements VendedorFornecedorDAO {
 	@Override
 	public List<VendedorFornecedor> listar() {
 		try {
-			String SQL = "SELECT * FROM vendedor_fornecedor";
+			String SQL = "SELECT * FROM vendedorFornecedor";
 			List<VendedorFornecedor> vendedoresFornecedores = new ArrayList<VendedorFornecedor>();
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ResultSet rs = ps.executeQuery();
@@ -83,7 +82,7 @@ public class JDBCVendedorFornecedorDAO implements VendedorFornecedorDAO {
 	@Override
 	public VendedorFornecedor buscar(int id) {
 		try {
-			String SQL = "SELECT * FROM vendedor_fornecedor where id = ?";
+			String SQL = "SELECT * FROM vendedorFornecedor where id = ?";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
@@ -104,7 +103,7 @@ public class JDBCVendedorFornecedorDAO implements VendedorFornecedorDAO {
 	@Override
 	public void editar(VendedorFornecedor vendedorFornecedor) {
 		try {
-			String SQL = "UPDATE vendedor_fornecedor set nome = ?, telefone = ?, email = ?  where id = ? ";
+			String SQL = "UPDATE vendedorFornecedor set nome = ?, telefone = ?, email = ?  where id = ? ";
 			PreparedStatement ps = connection.prepareStatement(SQL);
 
 			ps.setInt(4, vendedorFornecedor.getId());
