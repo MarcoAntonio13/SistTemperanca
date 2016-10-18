@@ -48,4 +48,13 @@ public class Receita {
 		this.produto = produto;
 	}
 
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+	
+
 }
