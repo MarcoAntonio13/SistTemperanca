@@ -31,6 +31,7 @@ public class HibernateStarter {
 	}
 	
 	public static SessionFactory getSessionFactory(){
+		if(factory == null){
 		factory = new Configuration()
 				.configure("hibernate.cfg.xml")
 				.addAnnotatedClass(Produto.class)
@@ -45,6 +46,7 @@ public class HibernateStarter {
 				.addAnnotatedClass(Renda.class)
 				.addAnnotatedClass(Venda.class)
 				.buildSessionFactory();
+		}
 		return factory;
 	}
 }
