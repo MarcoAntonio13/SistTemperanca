@@ -1,6 +1,15 @@
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Produto {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private Double valorProducao;
@@ -12,12 +21,13 @@ public class Produto {
 	}
 
 	public Produto(Integer id, String nome, Double valorProducao, Double valorVenda, Double peso) {
-
+		super();
 		this.id = id;
 		this.nome = nome;
 		this.valorProducao = valorProducao;
 		this.valorVenda = valorVenda;
 		this.peso = peso;
+
 	}
 
 	public Integer getId() {

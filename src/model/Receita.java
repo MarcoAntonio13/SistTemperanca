@@ -2,9 +2,24 @@ package model;
 
 import java.util.List;
 
-public class Receita {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
+@Entity
+public class Receita {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+	
+	@OneToMany
 	private List<Material> materias;
+	
+	@ManyToOne
 	private Produto produto;
 
 	public Receita() {

@@ -1,7 +1,15 @@
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class FormaPagamento {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
 	private String descricao;
@@ -10,9 +18,8 @@ public class FormaPagamento {
 
 	}
 
-	public FormaPagamento(Integer id, String nome, String descricao) {
+	public FormaPagamento(String nome, String descricao) {
 		super();
-		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
 	}

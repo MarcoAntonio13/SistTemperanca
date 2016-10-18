@@ -3,22 +3,38 @@ package model;
 import java.util.Calendar;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Venda {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Double valorTotal;
+	
+	@ManyToOne
 	private Cliente cliente;
+	
+	@ManyToOne
 	private FormaPagamento formaPagamento;
 	private Calendar data;
+	
+	@OneToMany
 	private List<Produto> produtos;
 
 	public Venda() {
 
 	}
 
-	public Venda(Integer id, Double valorTotal, Cliente cliente, FormaPagamento formaPagamento, Calendar data,
+	public Venda(Double valorTotal, Cliente cliente, FormaPagamento formaPagamento, Calendar data,
 			List<Produto> produtos) {
 		super();
-		this.id = id;
 		this.valorTotal = valorTotal;
 		this.cliente = cliente;
 		this.formaPagamento = formaPagamento;

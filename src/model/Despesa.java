@@ -2,7 +2,16 @@ package model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Despesa {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String descricao;
 	private LocalDate data;
@@ -14,9 +23,8 @@ public class Despesa {
 	
 	
 
-	public Despesa(Integer id, String descricao, LocalDate data, Double valor) {
+	public Despesa(String descricao, LocalDate data, Double valor) {
 		super();
-		this.id = id;
 		this.descricao = descricao;
 		this.data = data;
 		this.valor = valor;

@@ -2,7 +2,16 @@ package model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Renda {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String descricao;
 	private Double valor;
@@ -13,9 +22,8 @@ public class Renda {
 
 	}
 
-	public Renda(Integer id, String descricao, Double valor, LocalDate data, String nome) {
+	public Renda(String descricao, Double valor, LocalDate data, String nome) {
 		super();
-		this.id = id;
 		this.descricao = descricao;
 		this.valor = valor;
 		this.data = data;

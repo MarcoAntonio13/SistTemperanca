@@ -1,6 +1,8 @@
+/hibernate.cfg.xml
 /app/
 /conexao/
 /controller/
 /converter/
 /dao/
+/jpa/
 /model/

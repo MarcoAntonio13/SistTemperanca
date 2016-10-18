@@ -2,12 +2,25 @@ package model;
 
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Fornecedor {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String cnpj;
 	private String razaoSocial;
 	private Long telefone;
 	private String email;
+	
+	@OneToMany
 	private List<VendedorFornecedor> vendedores;
 
 	public Fornecedor() {

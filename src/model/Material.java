@@ -1,19 +1,30 @@
 package model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Material {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Double peso;
 	private Double valorCompra;
 	private String nome;
+	
+	@ManyToOne
 	private Fornecedor fornecedor;
 
 	public Material() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Material(Integer id, Double peso, Double valorCompra, String nome, Fornecedor fornecedor) {
+	public Material(Double peso, Double valorCompra, String nome, Fornecedor fornecedor) {
 		super();
-		this.id = id;
 		this.peso = peso;
 		this.valorCompra = valorCompra;
 		this.nome = nome;

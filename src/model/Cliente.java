@@ -1,30 +1,37 @@
 package model;
 
-public class Cliente {
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Cliente {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Long cnpj;
-	private Integer numeroEstabelecimento;
-	private Integer cep;
-	private String bairro;
-	private String rua;
+	
+	@OneToMany
+	private List<Endereco> enderecos;
 	private String razaoSocial;
 
 	public Cliente() {
 
 	}
 
-	public Cliente(Integer id, Long cnpj, Integer numeroEstabelecimento, Integer cep, String bairro, String rua,
-			String razaoSocial) {
+	public Cliente(Long cnpj, List<Endereco> enderecos, String razaoSocial) {
 		super();
-		this.id = id;
 		this.cnpj = cnpj;
-		this.numeroEstabelecimento = numeroEstabelecimento;
-		this.cep = cep;
-		this.bairro = bairro;
-		this.rua = rua;
+		this.enderecos = enderecos;
 		this.razaoSocial = razaoSocial;
 	}
+
+
 
 	public Integer getId() {
 		return id;
@@ -42,38 +49,6 @@ public class Cliente {
 		this.cnpj = cnpj;
 	}
 
-	public Integer getNumeroEstabelecimento() {
-		return numeroEstabelecimento;
-	}
-
-	public void setNumeroEstabelecimento(Integer numeroEstabelecimento) {
-		this.numeroEstabelecimento = numeroEstabelecimento;
-	}
-
-	public Integer getCep() {
-		return cep;
-	}
-
-	public void setCep(Integer cep) {
-		this.cep = cep;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public String getRua() {
-		return rua;
-	}
-
-	public void setRua(String rua) {
-		this.rua = rua;
-	}
-
 	public String getRazaoSocial() {
 		return razaoSocial;
 	}
@@ -81,5 +56,17 @@ public class Cliente {
 	public void setRazaoSocial(String razaoSocial) {
 		this.razaoSocial = razaoSocial;
 	}
+
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
+	}
+	
+	
 
 }
