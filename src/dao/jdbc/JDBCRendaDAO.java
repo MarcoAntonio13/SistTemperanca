@@ -1,126 +1,70 @@
 package dao.jdbc;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
-import conexao.ConnectionFactory;
-import converter.DateConverter;
+import java.util.List;
+
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+
+
 import dao.dao.RendaDAO;
 import model.Renda;
 
 public class JDBCRendaDAO implements RendaDAO {
 
-	private Connection connection;
+	private SessionFactory factory;
 
 	public JDBCRendaDAO() {
-		connection = ConnectionFactory.getConnection();
+		factory = HibernateStarter.getSessionFactory();
 	}
 
 	@Override
 	public void inserir(Renda renda) {
-		try {
-			String SQL = "INSERT INTO outras_rendas values (?, ?, ?, ?, ?)";
-			PreparedStatement ps = connection.prepareStatement(SQL);
-
-			ps.setInt(1, renda.getId());
-			ps.setString(2, renda.getDescricao());
-			ps.setDate(4, new Date(DateConverter.convertToDatabaseColumn(renda.getData()).getTime()));
-			ps.setDouble(3, renda.getValor());
-			ps.setString(5, renda.getNome());
-			ps.executeUpdate();
-
-		} catch (SQLException ex) {
-			Logger.getLogger(JDBCClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		session.save(renda);
+		session.getTransaction().commit();
 
 	}
 
 	@Override
 	public void remover(int id) {
-		try {
-			String SQL = "DELETE FROM outras_rendas WHERE id= ?";
-			PreparedStatement ps = connection.prepareStatement(SQL);
-
-			ps.setInt(1, id);
-
-			ps.executeUpdate();
-
-		} catch (SQLException ex) {
-			Logger.getLogger(JDBCClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		Renda renda = new Renda();
+		renda.setId(id);
+		session.delete(renda);
+		session.getTransaction().commit();
 	}
 
 	@Override
 	public List<Renda> listar() {
-		try {
-			String SQL = "SELECT * FROM outras_rendas";
-			List<Renda> rendas = new ArrayList<Renda>();
-			PreparedStatement ps = connection.prepareStatement(SQL);
-			ResultSet rs = ps.executeQuery();
-
-			while (rs.next()) {
-				Renda renda = new Renda();
-				renda.setId(rs.getInt("id"));
-				renda.setDescricao(rs.getString("descricao"));
-				renda.setData(DateConverter.convertToEntityAttribute(rs.getDate("data")));
-				renda.setValor(rs.getDouble("valor"));
-				renda.setNome(rs.getString("nome"));
-
-				rendas.add(renda);
-			}
-			return rendas;
-
-		} catch (SQLException ex) {
-			Logger.getLogger(JDBCClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-			return null;
-		}
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		@SuppressWarnings("unchecked")
+		List<Renda> rendas = session.createQuery("from Renda").getResultList();
+		session.getTransaction().commit();
+		return rendas;
 	}
 
 	@Override
 	public Renda buscar(int id) {
-		try {
-			String SQL = "SELECT * FROM outras_rendas where id = ?";
-			PreparedStatement ps = connection.prepareStatement(SQL);
-			ps.setInt(1, id);
-			ResultSet rs = ps.executeQuery();
-			rs.next();
-			Renda renda = new Renda();
-			renda.setId(rs.getInt("id"));
-			renda.setDescricao(rs.getString("descricao"));
-			renda.setData(DateConverter.convertToEntityAttribute(rs.getDate("data")));
-			renda.setValor(rs.getDouble("valor"));
-			renda.setNome(rs.getString("nome"));
-
-			return renda;
-		} catch (SQLException ex) {
-			Logger.getLogger(JDBCClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-			return null;
-		}
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		Renda renda = new Renda();
+		renda.setId(id);
+		renda = session.get(Renda.class, renda.getId());
+		session.getTransaction().commit();
+		return renda;
 	}
 
 	@Override
 	public void editar(Renda renda) {
-		try {
-			String SQL = "UPDATE outras_rendas set descricao = ?, data = ?, valor = ?, nome = ? where id = ? ";
-			PreparedStatement ps = connection.prepareStatement(SQL);
-
-			ps.setInt(5, renda.getId());
-			ps.setString(1, renda.getDescricao());
-			ps.setDate(2, new Date(DateConverter.convertToDatabaseColumn(renda.getData()).getTime()));
-			ps.setDouble(3, renda.getValor());
-			ps.setString(4, renda.getNome());
-			ps.executeUpdate();
-
-		} catch (SQLException ex) {
-			Logger.getLogger(JDBCClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
-		}
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		session.update(renda);
+		session.getTransaction().commit();
 	}
 
 }
