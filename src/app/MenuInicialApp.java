@@ -12,7 +12,7 @@ public class MenuInicialApp extends Application {
 
 	@Override
 	public void start(Stage stage) throws Exception {
-		Parent parent = FXMLLoader.load(getClass().getResource("/view/MenuInicialView.fxml"));
+		Parent parent = FXMLLoader.load(getClass().getResource("/view/MenuInicialView2.fxml"));
 		Scene scene = new Scene(parent);
 		stage.setScene(scene);
 		stage.setTitle("SisTemperança 1.0 - MenuInicial");

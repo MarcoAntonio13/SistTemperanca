@@ -12,7 +12,7 @@
               <menus>
                 <Menu mnemonicParsing="false" text="Cadastros">
                   <items>
-                    <MenuItem mnemonicParsing="false" text="Cadastro de Fornecedor" />
+                    <MenuItem mnemonicParsing="false" onAction="#abrirCadastroFornecedor" text="Cadastro de Fornecedor" />
                         <MenuItem mnemonicParsing="false" text="Cadastro de Tempero" />
                         <MenuItem mnemonicParsing="false" onAction="#abrirCadastroMaterial" text="Cadastro de Materiais" />
                         <MenuItem mnemonicParsing="false" text="Cadastro de Cliente" />
