@@ -10,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class LoginController {
@@ -29,27 +31,18 @@ public class LoginController {
 	@FXML
 	private Button btnEntrar;
 
-	// @FXML
-	// void actionP(ActionEvent event) {
-	// System.out.println("P");
-	// }
-
-
-
-	// @FXML
-	// void actionT(ActionEvent event) {
-	// System.out.println("LoginController.actionT()");
-	// }
-
 	@FXML
 	void entrar(ActionEvent event) throws Exception {
+		logar();
+	}
+	
+	public void logar() throws Exception{
 		if (txtLogin.getText().equals("admin") && txtSenha.getText().equals("admin")) {
 			new MenuInicialApp().start(new Stage());
 			LoginApp.getStage().close();
 		} else {
 			JOptionPane.showMessageDialog(null, "Senha ou Usuário Incorreto");
 		}
-
 	}
 
 	@FXML
@@ -57,5 +50,15 @@ public class LoginController {
 		LoginApp.getStage().close();
 
 	}
+	
+
+    @FXML
+    void entrarEnter(KeyEvent event) throws Exception {
+    	if(event.getCode() == KeyCode.ENTER){
+    		logar();
+    	}
+    }
+	
+	
 
 }
