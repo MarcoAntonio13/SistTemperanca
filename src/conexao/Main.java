@@ -24,43 +24,49 @@ public class Main {
 	
 	public static void main (String[]args){
 		
-		Endereco endereco = new Endereco();
-		endereco.setRua("Curitiba");
-		endereco.setBairro("Nova brasilia");
-		endereco.setNumeroEstabeleciemnto(2697);
-		JDBCEnderecoDAO enderecoDAO = new JDBCEnderecoDAO();
-		enderecoDAO.inserir(endereco);
+		JDBCFornecedorDAO fornecedorDAO = new JDBCFornecedorDAO();
+		List<Fornecedor> fornecedores = fornecedorDAO.listarPorRazaoSocial("Marco");
 		
-		List<Endereco> enderecos = new ArrayList<Endereco>();
-		enderecos.add(endereco);
-
-		Cliente cliente = new Cliente();
-		cliente.setCnpj(1238123124124l);
-		cliente.setRazaoSocial("Ervas da terra LTDA ME");
-		cliente.setEnderecos(enderecos);
+		fornecedores.forEach(action -> System.out.println("Razão Social: "+ action.getRazaoSocial()));
 		
-		JDBCClienteDAO clienteDAO = new JDBCClienteDAO();
-		clienteDAO.inserir(cliente);
 		
-		Produto produto = new Produto();
-		produto.setNome("Oregano Estragado");
-		produto.setValorVenda(4.45);
-		produto.setPeso(5.87);
-		
-		JDBCProdutoDAO produtoDAO = new JDBCProdutoDAO();
-		produtoDAO.inserir(produto);
-		
-		List<Produto> produtos = new ArrayList<Produto>();
-		produtos.add(produto);
-		
-		Venda venda = new Venda();
-		venda.setCliente(cliente);
-		venda.setData(Calendar.getInstance());
-		venda.setProdutos(produtos);
-		
-		JDBCVendaDAO vendaDAO = new JDBCVendaDAO();
-		vendaDAO.inserir(venda);
-		
+//		Endereco endereco = new Endereco();
+//		endereco.setRua("Curitiba");
+//		endereco.setBairro("Nova brasilia");
+//		endereco.setNumeroEstabeleciemnto(2697);
+//		JDBCEnderecoDAO enderecoDAO = new JDBCEnderecoDAO();
+//		enderecoDAO.inserir(endereco);
+//		
+//		List<Endereco> enderecos = new ArrayList<Endereco>();
+//		enderecos.add(endereco);
+//
+//		Cliente cliente = new Cliente();
+//		cliente.setCnpj(1238123124124l);
+//		cliente.setRazaoSocial("Ervas da terra LTDA ME");
+//		cliente.setEnderecos(enderecos);
+//		
+//		JDBCClienteDAO clienteDAO = new JDBCClienteDAO();
+//		clienteDAO.inserir(cliente);
+//		
+//		Produto produto = new Produto();
+//		produto.setNome("Oregano Estragado");
+//		produto.setValorVenda(4.45);
+//		produto.setPeso(5.87);
+//		
+//		JDBCProdutoDAO produtoDAO = new JDBCProdutoDAO();
+//		produtoDAO.inserir(produto);
+//		
+//		List<Produto> produtos = new ArrayList<Produto>();
+//		produtos.add(produto);
+//		
+//		Venda venda = new Venda();
+//		venda.setCliente(cliente);
+//		venda.setData(Calendar.getInstance());
+//		venda.setProdutos(produtos);
+//		
+//		JDBCVendaDAO vendaDAO = new JDBCVendaDAO();
+//		vendaDAO.inserir(venda);
+//		
 		
 //		LocalDate data = LocalDate.of(2010, 4 , 20);
 //		JDBCDespesaDAO daoDespesa = new JDBCDespesaDAO();

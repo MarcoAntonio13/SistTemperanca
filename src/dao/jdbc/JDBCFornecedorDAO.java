@@ -43,6 +43,16 @@ public class JDBCFornecedorDAO implements FornecedorDAO {
 		session.getTransaction().commit();
 		return fornecedores;
 	}
+	
+	public List<Fornecedor> listarPorRazaoSocial(String razaoSocial){
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		@SuppressWarnings("unchecked")
+		List<Fornecedor> fornecedores = session.createQuery("select f from Fornecedor f where f.razaoSocial like '%"+razaoSocial+"%'").getResultList();
+		session.getTransaction().commit();
+		return fornecedores;
+
+	}
 
 	@Override
 	public Fornecedor buscar(int id) {

@@ -85,5 +85,10 @@ public class Fornecedor {
 	public void setVendedores(List<VendedorFornecedor> vendedores) {
 		this.vendedores = vendedores;
 	}
+	
+	@Override
+	public String toString() {
+		return this.razaoSocial;
+	}
 
 }
