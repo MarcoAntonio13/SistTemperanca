@@ -45,7 +45,7 @@ public class MenuInicialController implements Initializable {
 
 	@FXML
 	void abrirCadastroFornecedor(ActionEvent event) throws IOException {
-		AnchorPane painelFornecedor = FXMLLoader.load(getClass().getResource("/view/CadastroFornecedorView2.fxml"));
+		AnchorPane painelFornecedor = FXMLLoader.load(getClass().getResource("/view/CadastroFornecedorView.fxml"));
 		Tab tab = new Tab("Cadastro de Fornecedor");
 		tab.setContent(painelFornecedor);
 		tab.setClosable(true);

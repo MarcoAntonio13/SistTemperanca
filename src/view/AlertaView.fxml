@@ -5,10 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="192.0" prefWidth="317.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.AlertaController">
+<AnchorPane prefHeight="192.0" prefWidth="317.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AlertaController">
    <children>
-      <Label fx:id="lbMensagem" alignment="CENTER" layoutX="33.0" layoutY="64.0" prefHeight="32.0" prefWidth="251.0" text="Mensagem" textAlignment="CENTER" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" />
-      <Button fx:id="btOk" layoutX="122.0" layoutY="136.0" mnemonicParsing="false" onAction="#fechar" prefHeight="25.0" prefWidth="72.0" text="OK" />
+      <Label fx:id="lbMensagem" alignment="CENTER" layoutX="33.0" layoutY="96.0" prefHeight="32.0" prefWidth="251.0" text="Mensagem" textAlignment="CENTER" AnchorPane.leftAnchor="33.0" AnchorPane.rightAnchor="33.0" />
+      <Button fx:id="btOk" layoutX="123.0" layoutY="153.0" mnemonicParsing="false" onAction="#fechar" prefHeight="25.0" prefWidth="72.0" text="OK" />
    </children>
 </AnchorPane>
