@@ -5,22 +5,24 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
+<?import util.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroFornecedorController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroMaterialController">
    <children>
-      <TextField fx:id="txtCnpj" layoutX="186.0" layoutY="32.0" prefHeight="25.0" prefWidth="306.0" />
+      <Button fx:id="btPesquisarMaterial" layoutX="97.0" layoutY="32.0" mnemonicParsing="false" onAction="#pesquisarMaterial" prefHeight="25.0" prefWidth="75.0" text="Pesquisar" />
       <TextField fx:id="txtId" disable="true" editable="false" layoutX="23.0" layoutY="32.0" mouseTransparent="true" prefHeight="25.0" prefWidth="66.0" />
-      <Text layoutX="23.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
-      <Text layoutX="185.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CNPJ:" />
+      <TextField fx:id="txtNome" layoutX="186.0" layoutY="32.0" prefHeight="25.0" prefWidth="306.0" />
+      <TextField fx:id="txtPeso" layoutX="23.0" layoutY="84.0" prefHeight="25.0" prefWidth="134.0" />
+      <TextField fx:id="txtValorCompra" layoutX="183.0" layoutY="84.0" prefHeight="25.0" prefWidth="134.0" />
+      <TextField fx:id="txtFornecedor" layoutX="22.0" layoutY="145.0" prefHeight="25.0" prefWidth="134.0" />
       <Button layoutX="13.0" layoutY="309.0" mnemonicParsing="false" onAction="#salvar" prefHeight="25.0" prefWidth="83.0" text="Salvar" />
-      <TextField fx:id="txtTelefone" layoutX="22.0" layoutY="136.0" prefHeight="25.0" prefWidth="150.0" />
-      <Text layoutX="22.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone:" />
-      <Text layoutX="23.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Razão Social:" />
-      <TextField fx:id="txtRazaoSocial" layoutX="23.0" layoutY="84.0" prefHeight="25.0" prefWidth="319.0" />
-      <Button fx:id="btPesquisar" layoutX="97.0" layoutY="32.0" mnemonicParsing="false" onAction="#pesquisar" prefHeight="25.0" prefWidth="75.0" text="Pesquisar" />
-      <Text layoutX="22.0" layoutY="180.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail" />
-      <TextField fx:id="txtEmail" layoutX="22.0" layoutY="185.0" prefHeight="25.0" prefWidth="239.0" />
-      <Button layoutX="503.0" layoutY="309.0" mnemonicParsing="false" onAction="#excluir" prefHeight="25.0" prefWidth="83.0" text="Excluir" />
       <Button layoutX="100.0" layoutY="309.0" mnemonicParsing="false" onAction="#novo" prefHeight="25.0" prefWidth="83.0" text="Novo" />
+      <Button layoutX="503.0" layoutY="309.0" mnemonicParsing="false" onAction="#excluir" prefHeight="25.0" prefWidth="83.0" text="Excluir" />
+      <Text layoutX="23.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
+      <Text layoutX="185.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nome:" />
+      <Text layoutX="23.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Peso:" />
+      <Text layoutX="22.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fornecedor" />
+      <Text layoutX="183.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor da compra:" />
+      <Button fx:id="btPesquisarFornecedor" layoutX="165.0" layoutY="145.0" mnemonicParsing="false" onAction="#pesquisarFornecedor" prefHeight="25.0" prefWidth="75.0" text="Pesquisar" />
    </children>
 </AnchorPane>

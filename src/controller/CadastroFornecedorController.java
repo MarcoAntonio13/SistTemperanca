@@ -1,17 +1,22 @@
 package controller;
 
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import app.AlertaApp;
 import app.TelaPesquisaApp;
 import dao.jdbc.JDBCFornecedorDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Fornecedor;
+import util.MaskTextField;
 
-public class CadastroFornecedorController {
+public class CadastroFornecedorController implements Initializable {
 
 	JDBCFornecedorDAO fornecedorDAO = new JDBCFornecedorDAO();
 
@@ -22,13 +27,14 @@ public class CadastroFornecedorController {
 	private TextField txtRazaoSocial;
 
 	@FXML
-	private TextField txtTelefone;
+	private MaskTextField txtTelefone;
 
 	@FXML
-	private TextField txtCnpj;
+	private MaskTextField txtCnpj;
 
 	@FXML
 	private TextField txtEmail;
+	
 
 	@FXML
 	void salvar(ActionEvent event) throws Exception {
@@ -118,6 +124,13 @@ public class CadastroFornecedorController {
 		txtRazaoSocial.setText("");
 		txtTelefone.setText("");
 		txtEmail.setText("");
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		txtCnpj.setMask("NNNNNNNNNNNNNN");
+		txtTelefone.setMask("NNNNNNNNNNN");
+		
 	}
 	
 
