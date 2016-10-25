@@ -1,11 +1,12 @@
-package controller;
+package controller.cadastro;
 
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import app.AlertaApp;
-import app.TelaPesquisaApp;
+import app.pesquisa.TelaPesquisaFornecedorApp;
+import controller.pesquisa.TelaPesquisaFornecedorController;
 import dao.jdbc.JDBCFornecedorDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -74,9 +75,9 @@ public class CadastroFornecedorController implements Initializable {
 	void pesquisar(ActionEvent event) throws Exception {
 		Stage stageTelaPesquisa = new Stage();
 		stageTelaPesquisa.initModality(Modality.APPLICATION_MODAL);
-		new TelaPesquisaApp().start(stageTelaPesquisa);
-		if (TelaPesquisaController.getFornecedor() != null)
-			posicionaFornecedor(TelaPesquisaController.getFornecedor());
+		new TelaPesquisaFornecedorApp().start(stageTelaPesquisa);
+		if (TelaPesquisaFornecedorController.getFornecedor() != null)
+			posicionaFornecedor(TelaPesquisaFornecedorController.getFornecedor());
 	}
 
 	public Fornecedor montaFornecedor() {

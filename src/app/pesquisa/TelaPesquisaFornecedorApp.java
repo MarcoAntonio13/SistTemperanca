@@ -1,4 +1,4 @@
-package app;
+package app.pesquisa;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class TelaPesquisaApp extends Application {
+public class TelaPesquisaFornecedorApp extends Application {
 	
 	private static Stage stage;
 

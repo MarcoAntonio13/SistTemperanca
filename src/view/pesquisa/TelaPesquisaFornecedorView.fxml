@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="293.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.TelaPesquisaController">
+<AnchorPane prefHeight="293.0" prefWidth="418.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.cadastro.TelaPesquisaFornecedorController">
    <children>
       <ListView fx:id="listPesquisa" layoutX="43.0" layoutY="62.0" prefHeight="200.0" prefWidth="332.0" />
       <TextField fx:id="txtPesquisa" layoutX="43.0" layoutY="31.0" prefHeight="25.0" prefWidth="253.0" />

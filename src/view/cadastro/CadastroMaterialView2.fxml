@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import util.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CadastroMaterialController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.cadastro.CadastroMaterialController">
    <children>
       <Button fx:id="btPesquisarMaterial" layoutX="97.0" layoutY="32.0" mnemonicParsing="false" onAction="#pesquisarMaterial" prefHeight="25.0" prefWidth="75.0" text="Pesquisar" />
       <TextField fx:id="txtId" disable="true" editable="false" layoutX="23.0" layoutY="32.0" mouseTransparent="true" prefHeight="25.0" prefWidth="66.0" />

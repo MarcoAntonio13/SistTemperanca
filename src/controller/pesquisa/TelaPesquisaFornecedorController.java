@@ -1,4 +1,4 @@
-package controller;
+package controller.pesquisa;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-import app.TelaPesquisaApp;
+import app.pesquisa.TelaPesquisaFornecedorApp;
 import dao.dao.FornecedorDAO;
 import dao.jdbc.JDBCFornecedorDAO;
 import javafx.collections.ObservableList;
@@ -20,7 +20,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
 import model.Fornecedor;
 
-public class TelaPesquisaController implements Initializable {
+public class TelaPesquisaFornecedorController implements Initializable {
 
     @FXML
     private TextField txtPesquisa;
@@ -50,7 +50,7 @@ public class TelaPesquisaController implements Initializable {
 		this.listPesquisa.setOnMouseClicked(event -> {
 			if(event.getClickCount() == 2){
 				this.fornecedor = this.listPesquisa.getSelectionModel().getSelectedItem();
-				TelaPesquisaApp.getStage().close();
+				TelaPesquisaFornecedorApp.getStage().close();
 			}
 		});
 		
