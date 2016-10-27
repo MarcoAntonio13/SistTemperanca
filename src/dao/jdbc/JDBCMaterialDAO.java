@@ -65,5 +65,14 @@ public class JDBCMaterialDAO implements MaterialDAO {
 		session.getTransaction().commit();
 		
 	}
+	
+	public List<Material> listarPorNome(String nome){
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		@SuppressWarnings("unchecked")
+		List<Material> materiais = session.createQuery("select m from Material m where m.nome like '%"+nome+"%'").getResultList();
+		session.getTransaction().commit();
+		return materiais;
+	}
 
 }

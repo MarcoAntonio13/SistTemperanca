@@ -15,7 +15,7 @@
                     <MenuItem mnemonicParsing="false" onAction="#abrirCadastroFornecedor" text="Cadastro de Fornecedor" />
                         <MenuItem mnemonicParsing="false" text="Cadastro de Tempero" />
                         <MenuItem mnemonicParsing="false" onAction="#abrirCadastroMaterial" text="Cadastro de Materiais" />
-                        <MenuItem mnemonicParsing="false" text="Cadastro de Cliente" />
+                        <MenuItem mnemonicParsing="false" onAction="#abrirCadastroCliente" text="Cadastro de Cliente" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Relatórios">

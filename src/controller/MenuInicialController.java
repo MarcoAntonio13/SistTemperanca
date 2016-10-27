@@ -31,7 +31,7 @@ public class MenuInicialController implements Initializable {
     
     @FXML
     void abrirCadastroMaterial(ActionEvent event) throws IOException {
-    	AnchorPane painelMaterial = FXMLLoader.load(getClass().getResource("/view/cadastro/CadastroMaterialView2.fxml"));
+    	AnchorPane painelMaterial = FXMLLoader.load(getClass().getResource("/view/cadastro/CadastroMaterialView.fxml"));
     	
     	Tab tab = new Tab("Cadastro de Materiais");
     	tab.setContent(painelMaterial);
@@ -48,6 +48,19 @@ public class MenuInicialController implements Initializable {
 		AnchorPane painelFornecedor = FXMLLoader.load(getClass().getResource("/view/cadastro/CadastroFornecedorView.fxml"));
 		Tab tab = new Tab("Cadastro de Fornecedor");
 		tab.setContent(painelFornecedor);
+		tab.setClosable(true);
+		tabPane.getTabs().add(tab);
+		tabPane.getSelectionModel().select(tab);
+
+		principalBorderPane.setCenter(tabPane);
+
+	}
+	
+	@FXML
+	void abrirCadastroCliente(ActionEvent event) throws IOException {
+		AnchorPane painelCliente = FXMLLoader.load(getClass().getResource("/view/cadastro/CadastroClienteView.fxml"));
+		Tab tab = new Tab("Cadastro de Cliente");
+		tab.setContent(painelCliente);
 		tab.setClosable(true);
 		tabPane.getTabs().add(tab);
 		tabPane.getSelectionModel().select(tab);

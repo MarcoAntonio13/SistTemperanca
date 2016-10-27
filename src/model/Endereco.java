@@ -10,7 +10,7 @@ public class Endereco {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	private String rua;
 	private int numeroEstabeleciemnto;
 	private String bairro;
@@ -28,11 +28,13 @@ public class Endereco {
 		this.cep = cep;
 	}
 
-	public int getId() {
+
+
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -66,6 +68,12 @@ public class Endereco {
 
 	public void setCep(Long cep) {
 		this.cep = cep;
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Rua/Av.: "+this.rua+" Número: "+ this.numeroEstabeleciemnto+" Bairro: "+ this.bairro +" CEP: "+this.cep;
 	}
 
 }

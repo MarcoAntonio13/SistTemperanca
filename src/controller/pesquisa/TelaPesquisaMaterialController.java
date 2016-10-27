@@ -1,11 +1,12 @@
 package controller.pesquisa;
 
 import java.net.URL;
+
 import java.util.ResourceBundle;
 
-import app.pesquisa.TelaPesquisaFornecedorApp;
+import app.pesquisa.TelaPesquisaMaterialApp;
 
-import dao.jdbc.JDBCFornecedorDAO;
+import dao.jdbc.JDBCMaterialDAO;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,9 +16,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
-import model.Fornecedor;
 
-public class TelaPesquisaFornecedorController implements Initializable {
+import model.Material;
+
+public class TelaPesquisaMaterialController implements Initializable {
 
 	@FXML
 	private TextField txtPesquisa;
@@ -29,32 +31,32 @@ public class TelaPesquisaFornecedorController implements Initializable {
 	private Label labelParametroPesquisa;
 
 	@FXML
-	private ListView<Fornecedor> listPesquisa;
+	private ListView<Material> listPesquisa;
 
-	private static Fornecedor fornecedor;
+	private static Material material;
 
-	private JDBCFornecedorDAO fornecedorDAO = new JDBCFornecedorDAO();
+	private JDBCMaterialDAO materialDAO = new JDBCMaterialDAO();
 
 	@FXML
 	void pesquisar(ActionEvent event) {
-		listPesquisa.getItems().setAll(fornecedorDAO.listarPorRazaoSocial(txtPesquisa.getText()));
+		listPesquisa.getItems().setAll(materialDAO.listarPorNome(txtPesquisa.getText()));
 	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		this.listPesquisa.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-		listPesquisa.getItems().setAll(fornecedorDAO.listarPorRazaoSocial(txtPesquisa.getText()));
+		listPesquisa.getItems().setAll(materialDAO.listarPorNome(txtPesquisa.getText()));
 		this.listPesquisa.setOnMouseClicked(event -> {
 			if (event.getClickCount() == 2) {
-				TelaPesquisaFornecedorController.fornecedor = this.listPesquisa.getSelectionModel().getSelectedItem();
-				TelaPesquisaFornecedorApp.getStage().close();
+				TelaPesquisaMaterialController.material = this.listPesquisa.getSelectionModel().getSelectedItem();
+				TelaPesquisaMaterialApp.getStage().close();
 			}
 		});
 
 	}
 
-	public static Fornecedor getFornecedor() {
-		return fornecedor;
+	public static Material getMaterial() {
+		return material;
 	}
 
 }

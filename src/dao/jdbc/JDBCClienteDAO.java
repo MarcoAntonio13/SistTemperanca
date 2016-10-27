@@ -7,6 +7,7 @@ import org.hibernate.SessionFactory;
 
 import dao.dao.ClienteDAO;
 import model.Cliente;
+import model.Fornecedor;
 
 public class JDBCClienteDAO implements ClienteDAO {
 	
@@ -28,8 +29,7 @@ public class JDBCClienteDAO implements ClienteDAO {
 	public void remover(int id) {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
-		Cliente cliente = new Cliente();
-		cliente.setId(id);
+		Cliente cliente = session.get(Cliente.class, id);
 		session.delete(cliente);
 		session.getTransaction().commit();
 	}
@@ -39,7 +39,7 @@ public class JDBCClienteDAO implements ClienteDAO {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		@SuppressWarnings("unchecked")
-		List<Cliente> clientes = session.createQuery("from Cliente").getResultList();
+		List<Cliente> clientes = session.createQuery("from Cliente c JOIN FETCH c.enderecos").getResultList();
 		session.getTransaction().commit();
 		return clientes;
 	}
@@ -49,8 +49,7 @@ public class JDBCClienteDAO implements ClienteDAO {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		Cliente cliente = new Cliente();
-		cliente.setId(id);
-		cliente = session.get(Cliente.class, cliente.getId());
+		cliente = (Cliente) session.createQuery("from Cliente c JOIN FETCH c.enderecos where c.id="+id).getSingleResult();
 		session.getTransaction().commit();
 		return cliente;
 	}
@@ -62,5 +61,17 @@ public class JDBCClienteDAO implements ClienteDAO {
 		session.update(cliente);
 		session.getTransaction().commit();
 	}
+	
+	public List<Cliente> listarPorRazaoSocial(String razaoSocial){
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		@SuppressWarnings("unchecked")
+		List<Cliente> clientes = session.createQuery("from Cliente c where c.razaoSocial like '%"+razaoSocial+"%'").getResultList();
+		session.getTransaction().commit();
+		return clientes;
+
+	}
+	
+	
 	
 }
