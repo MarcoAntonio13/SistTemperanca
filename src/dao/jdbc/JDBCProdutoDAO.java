@@ -29,7 +29,7 @@ public class JDBCProdutoDAO implements ProdutoDAO {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		Produto produto = new Produto();
-		produto.setId(id);
+		produto  = session.get(Produto.class, id);
 		session.delete(produto);
 		session.getTransaction().commit();		
 	}
@@ -64,5 +64,17 @@ public class JDBCProdutoDAO implements ProdutoDAO {
 		session.getTransaction().commit();
 		
 	}
+	
+	public List<Produto> listarPorNome(String nome) {
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		@SuppressWarnings("unchecked")
+		List<Produto> produtos = session.createQuery("SELECT p from Produto p where p.nome LIKE '%"+nome+"%'").getResultList();
+		session.getTransaction().commit();
+		return produtos;
+
+	}
+	
+	
 
 }

@@ -64,5 +64,11 @@ public class Receita {
 	public void setPesoMaterial(Double pesoMaterial) {
 		this.pesoMaterial = pesoMaterial;
 	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Material: "+this.material.getNome()+ " Peso: "+this.pesoMaterial;
+	}
 
 }

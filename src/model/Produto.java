@@ -1,9 +1,17 @@
 package model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Produto {
@@ -16,20 +24,24 @@ public class Produto {
 	private Double valorVenda;
 	private Double pesoPorEmbalagem;
 
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="produto")
+	@Cascade({ CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.DELETE, CascadeType.MERGE })
+	private List<Receita> receitas;
+
 	public Produto() {
 
 	}
-	
-	
-	public Produto(Integer id, String nome, Double valorProducao, Double valorVenda, Double pesoPorEmbalagem) {
+
+	public Produto(Integer id, String nome, Double valorProducao, Double valorVenda, Double pesoPorEmbalagem,
+			List<Receita> receitas) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.valorProducao = valorProducao;
 		this.valorVenda = valorVenda;
 		this.pesoPorEmbalagem = pesoPorEmbalagem;
+		this.receitas = receitas;
 	}
-
 
 	public Integer getId() {
 		return id;
@@ -63,18 +75,26 @@ public class Produto {
 		this.valorVenda = valorVenda;
 	}
 
+	public List<Receita> getReceitas() {
+		return receitas;
+	}
+
+	public void setReceitas(List<Receita> receitas) {
+		this.receitas = receitas;
+	}
 
 	public Double getPesoPorEmbalagem() {
 		return pesoPorEmbalagem;
 	}
 
-
 	public void setPesoPorEmbalagem(Double pesoPorEmbalagem) {
 		this.pesoPorEmbalagem = pesoPorEmbalagem;
 	}
 	
-	
-
-
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return this.nome;
+	}
 
 }

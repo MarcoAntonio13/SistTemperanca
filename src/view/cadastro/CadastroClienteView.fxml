@@ -6,7 +6,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.cadastro.CadastroClienteController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="365.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.cadastro.CadastroClienteController">
    <children>
       <TextField fx:id="txtId" disable="true" editable="false" layoutX="23.0" layoutY="32.0" mouseTransparent="true" prefHeight="25.0" prefWidth="66.0" />
       <TextField fx:id="txtCnpj" layoutX="186.0" layoutY="32.0" prefHeight="25.0" prefWidth="176.0" />
@@ -19,13 +19,13 @@
       <TextField fx:id="txtCep" layoutX="23.0" layoutY="208.0" prefHeight="25.0" prefWidth="150.0" />
       <Text layoutX="23.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID:" />
       <Text layoutX="185.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CNPJ:" />
-      <Button layoutX="14.0" layoutY="325.0" mnemonicParsing="false" onAction="#salvar" prefHeight="25.0" prefWidth="83.0" text="Salvar" />
+      <Button layoutX="14.0" layoutY="314.0" mnemonicParsing="false" onAction="#salvar" prefHeight="25.0" prefWidth="83.0" text="Salvar" />
       <Text layoutX="22.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Telefone:" />
       <Text layoutX="376.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Razão Social:" />
       <Button fx:id="btPesquisar" layoutX="97.0" layoutY="32.0" mnemonicParsing="false" onAction="#pesquisar" prefHeight="25.0" prefWidth="75.0" text="Pesquisar" />
       <Text layoutX="181.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail:" />
-      <Button layoutX="106.0" layoutY="325.0" mnemonicParsing="false" onAction="#novo" prefHeight="25.0" prefWidth="83.0" text="Novo" />
-      <Button layoutX="496.0" layoutY="325.0" mnemonicParsing="false" onAction="#excluir" prefHeight="25.0" prefWidth="83.0" text="Excluir" />
+      <Button layoutX="106.0" layoutY="314.0" mnemonicParsing="false" onAction="#novo" prefHeight="25.0" prefWidth="83.0" text="Novo" />
+      <Button layoutX="496.0" layoutY="314.0" mnemonicParsing="false" onAction="#excluir" prefHeight="25.0" prefWidth="83.0" text="Excluir" />
       <Text layoutX="28.0" layoutY="131.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Endereços:" />
       <ListView fx:id="listEndereco" layoutX="23.0" layoutY="242.0" prefHeight="66.0" prefWidth="544.0">
          <contextMenu>
