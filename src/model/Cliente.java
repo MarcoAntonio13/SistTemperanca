@@ -21,7 +21,7 @@ public class Cliente {
 	private Long cnpj;
 	
 	@OneToMany(fetch=FetchType.EAGER)
-	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE})
+	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.MERGE})
 	private List<Endereco> enderecos;
 	
 	@OneToMany(mappedBy="cliente")

@@ -31,7 +31,7 @@
          <contextMenu>
             <ContextMenu fx:id="opcaoListEndereco">
               <items>
-                <MenuItem mnemonicParsing="false" text="Excluir" />
+                <MenuItem mnemonicParsing="false" onAction="#excluirEndereco" text="Excluir" />
               </items>
             </ContextMenu>
          </contextMenu></ListView>
@@ -41,5 +41,6 @@
       <Text layoutX="343.0" layoutY="154.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bairro:" />
       <Text layoutX="23.0" layoutY="203.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CEP:" />
       <Button fx:id="btAdicionaEndereco" layoutX="189.0" layoutY="208.0" mnemonicParsing="false" onAction="#adicionarEndereco" prefHeight="25.0" prefWidth="83.0" text="Adicionar+" />
+      <Button layoutX="294.0" layoutY="208.0" mnemonicParsing="false" onAction="#salvarEndereco" prefHeight="25.0" prefWidth="108.0" text="Salvar Endereço" />
    </children>
 </AnchorPane>

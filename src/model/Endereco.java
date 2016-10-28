@@ -12,7 +12,7 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String rua;
-	private int numeroEstabeleciemnto;
+	private Integer numeroEstabeleciemnto;
 	private String bairro;
 	private Long cep;
 	
@@ -20,13 +20,20 @@ public class Endereco {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Endereco(String rua, int numeroEstabeleciemnto, String bairro, Long cep) {
+	
+
+
+
+	public Endereco(Integer id, String rua, Integer numeroEstabeleciemnto, String bairro, Long cep) {
 		super();
+		this.id = id;
 		this.rua = rua;
 		this.numeroEstabeleciemnto = numeroEstabeleciemnto;
 		this.bairro = bairro;
 		this.cep = cep;
 	}
+
+
 
 
 
@@ -45,14 +52,21 @@ public class Endereco {
 	public void setRua(String rua) {
 		this.rua = rua;
 	}
+	
+	
 
-	public int getNumeroEstabeleciemnto() {
+	public Integer getNumeroEstabeleciemnto() {
 		return numeroEstabeleciemnto;
 	}
 
-	public void setNumeroEstabeleciemnto(int numeroEstabeleciemnto) {
+
+	public void setNumeroEstabeleciemnto(Integer numeroEstabeleciemnto) {
 		this.numeroEstabeleciemnto = numeroEstabeleciemnto;
 	}
+
+
+
+
 
 	public String getBairro() {
 		return bairro;

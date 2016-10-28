@@ -71,18 +71,15 @@ public class CadastroClienteController implements Initializable {
     @FXML
     private ContextMenu opcaoListEndereco;
     
-    private List<Endereco> enderecosDaLista = new ArrayList<Endereco>();
-    
     private Cliente clienteSelecionado;
+    
+    private Endereco enderecoSelecionado;
 
     @FXML
     void salvar(ActionEvent event) throws Exception {
     	if (txtId.getText().isEmpty()) {
 			Cliente cliente = new Cliente();
 			cliente = montaCliente();
-			if(!listEndereco.getItems().isEmpty())
-			listEndereco.getItems().forEach(action-> enderecoDAO.inserir(action));
-			
 			clienteDAO.inserir(cliente);
 			clienteSelecionado = cliente;
 			new AlertaApp().start(new Stage(), "Salvo com Sucesso!");
@@ -166,8 +163,6 @@ public class CadastroClienteController implements Initializable {
 		if(!listEndereco.getItems().isEmpty())
 		listEndereco.getItems().clear();
 		
-		if(enderecosDaLista!=null)
-		enderecosDaLista.clear();
 	}
 
     @FXML
@@ -196,24 +191,71 @@ public class CadastroClienteController implements Initializable {
     
     @FXML
     void adicionarEndereco(ActionEvent event) throws NumberFormatException  {
-    	Endereco endereco = new Endereco();
-    	endereco.setRua(txtRuaAv.getText());
-    	endereco.setNumeroEstabeleciemnto(Integer.parseInt(txtNumero.getText()));
-    	endereco.setBairro(txtBairro.getText());
-    	endereco.setCep(Long.parseLong(txtCep.getText()));
-    	enderecosDaLista.add(endereco);
-    	listEndereco.getItems().add(endereco);
+    	listEndereco.getItems().add(montaEndereco());
     	limpaCamposEndereco();
+    }
+    
+    private Endereco montaEndereco(){
+    	Endereco endereco = new Endereco();
+    	if(!txtRuaAv.getText().isEmpty()&&txtRuaAv.getText()!=null)
+    	endereco.setRua(txtRuaAv.getText());
+    	if(!txtNumero.getText().isEmpty()&&txtNumero.getText()!=null)
+    	endereco.setNumeroEstabeleciemnto(Integer.parseInt(txtNumero.getText()));
+    	if(!txtBairro.getText().isEmpty()&&txtBairro.getText()!=null)
+    	endereco.setBairro(txtBairro.getText());
+    	if(!txtNumero.getText().isEmpty()&&txtCep.getText()!=null)
+    	endereco.setCep(Long.parseLong(txtCep.getText()));
+    	
+    	return endereco;
+    }
+    
+    @FXML
+    private void excluirEndereco() throws Exception{
+    	clienteSelecionado.getEnderecos().remove(listEndereco.getSelectionModel().getSelectedItem());
+    	System.out.println(listEndereco.getSelectionModel().getSelectedItem());
+    	listEndereco.getItems().remove(listEndereco.getSelectionModel().getSelectedItem());
+    }
+    
+    @FXML
+    private void salvarEndereco() throws Exception{
+    	if(enderecoSelecionado!=null){
+    	listEndereco.getItems().remove(enderecoSelecionado);
+    	Endereco enderecoEditado = montaEndereco();
+    	enderecoEditado.setId(enderecoSelecionado.getId());
+    	listEndereco.getItems().add(enderecoEditado);
+    	enderecoSelecionado = null;
+    	limpaCamposEndereco();
+    	}else{
+    		new AlertaApp().start(new Stage(), "Selecione um Endereço para Editar!");
+    	}
+    	
     }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		listEndereco.setOnMouseReleased(value-> {
-			if(value.isSecondaryButtonDown()){
-		
+		listEndereco.setOnMouseClicked(value->{
+			if(value.getClickCount() == 2){
+				if(listEndereco.getSelectionModel().getSelectedItem()!=null)
+				posicionaEndereco(listEndereco.getSelectionModel().getSelectedItem());
 			}
 		});
 		
+	}
+	
+	private void posicionaEndereco(Endereco endereco){
+		if(!endereco.getRua().isEmpty()&& endereco.getRua()!=null)
+		txtRuaAv.setText(endereco.getRua());
+		
+		if(endereco.getNumeroEstabeleciemnto()!=null)
+		txtNumero.setText(Integer.toString(endereco.getNumeroEstabeleciemnto()));
+		
+		if(!endereco.getBairro().isEmpty()&& endereco.getBairro()!=null)
+		txtBairro.setText(endereco.getBairro());
+		
+		if(endereco.getCep()!=null)
+		txtCep.setText(Long.toString(endereco.getCep()));
+		
+		enderecoSelecionado = endereco;
 	}
 
 
