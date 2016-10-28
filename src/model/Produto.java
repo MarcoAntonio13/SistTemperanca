@@ -14,21 +14,22 @@ public class Produto {
 	private String nome;
 	private Double valorProducao;
 	private Double valorVenda;
-	private Double peso;
+	private Double pesoPorEmbalagem;
 
 	public Produto() {
 
 	}
-
-	public Produto(Integer id, String nome, Double valorProducao, Double valorVenda, Double peso) {
+	
+	
+	public Produto(Integer id, String nome, Double valorProducao, Double valorVenda, Double pesoPorEmbalagem) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.valorProducao = valorProducao;
 		this.valorVenda = valorVenda;
-		this.peso = peso;
-
+		this.pesoPorEmbalagem = pesoPorEmbalagem;
 	}
+
 
 	public Integer getId() {
 		return id;
@@ -62,12 +63,18 @@ public class Produto {
 		this.valorVenda = valorVenda;
 	}
 
-	public Double getPeso() {
-		return peso;
+
+	public Double getPesoPorEmbalagem() {
+		return pesoPorEmbalagem;
 	}
 
-	public void setPeso(Double peso) {
-		this.peso = peso;
+
+	public void setPesoPorEmbalagem(Double pesoPorEmbalagem) {
+		this.pesoPorEmbalagem = pesoPorEmbalagem;
 	}
+	
+	
+
+
 
 }

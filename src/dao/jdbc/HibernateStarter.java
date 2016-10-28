@@ -6,6 +6,8 @@ import org.hibernate.cfg.Configuration;
 import model.Cliente;
 import model.Despesa;
 import model.Endereco;
+import model.EstoqueMaterial;
+import model.EstoqueProduto;
 import model.FormaPagamento;
 import model.Fornecedor;
 import model.Material;
@@ -45,6 +47,8 @@ public class HibernateStarter {
 				.addAnnotatedClass(Receita.class)
 				.addAnnotatedClass(Renda.class)
 				.addAnnotatedClass(Venda.class)
+				.addAnnotatedClass(EstoqueMaterial.class)
+				.addAnnotatedClass(EstoqueProduto.class)
 				.buildSessionFactory();
 		}
 		return factory;

@@ -1,43 +1,44 @@
 package model;
 
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Receita {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
-	@OneToMany
-	private List<Material> materias;
-	
+
+	@ManyToOne
+	private Material material;
+
 	@ManyToOne
 	private Produto produto;
+
+	private Double pesoMaterial;
 
 	public Receita() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Receita(List<Material> materias, Produto produto) {
+	public Receita(Integer id, Material material, Produto produto, Double pesoMaterial) {
 		super();
-		this.materias = materias;
+		this.id = id;
+		this.material = material;
 		this.produto = produto;
+		this.pesoMaterial = pesoMaterial;
 	}
 
-	public List<Material> getMaterias() {
-		return materias;
+	public Material getMaterial() {
+		return material;
 	}
 
-	public void setMaterias(List<Material> materias) {
-		this.materias = materias;
+	public void setMaterial(Material material) {
+		this.material = material;
 	}
 
 	public Produto getProduto() {
@@ -55,6 +56,13 @@ public class Receita {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
+	public Double getPesoMaterial() {
+		return pesoMaterial;
+	}
+
+	public void setPesoMaterial(Double pesoMaterial) {
+		this.pesoMaterial = pesoMaterial;
+	}
 
 }
