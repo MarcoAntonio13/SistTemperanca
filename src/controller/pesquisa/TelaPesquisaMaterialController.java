@@ -58,5 +58,9 @@ public class TelaPesquisaMaterialController implements Initializable {
 	public static Material getMaterial() {
 		return material;
 	}
+	
+	public static void setMaterial(Material material){
+		TelaPesquisaMaterialController.material = material;
+	}
 
 }

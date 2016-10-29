@@ -65,5 +65,15 @@ public class JDBCEstoqueMaterialDAO implements EstoqueMaterialDAO {
 		session.getTransaction().commit();	
 
 	}
+	
+	public List<EstoqueMaterial> listarPorNome(String nome) {
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		@SuppressWarnings("unchecked")
+		List<EstoqueMaterial> estoquesMateriais = session.createQuery("SELECT e from EstoqueMaterial e where e.material.nome LIKE '%"+nome+ "%'").getResultList();
+		session.getTransaction().commit();
+		return estoquesMateriais;
+	}
+	
 
 }

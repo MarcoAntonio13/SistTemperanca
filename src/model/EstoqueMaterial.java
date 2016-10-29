@@ -62,6 +62,12 @@ public class EstoqueMaterial {
 		this.material = material;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return "Material: "+this.material+" Quantidade: "+this.quantidade+ "Data da Entrada: "+this.dataEntrada.toString();
+	}
+	
 	
 	
 }

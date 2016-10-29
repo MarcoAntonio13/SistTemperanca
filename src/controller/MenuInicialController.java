@@ -94,6 +94,19 @@ public class MenuInicialController implements Initializable {
 		principalBorderPane.setCenter(tabPane);
 
 	}
+	
+	@FXML
+	void abrirLancamentoMaterial(ActionEvent event) throws IOException {
+		AnchorPane painelCliente = FXMLLoader.load(getClass().getResource("/view/lancamento/LancamentoMaterialView.fxml"));
+		Tab tab = new Tab("Lancamento de Material");
+		tab.setContent(painelCliente);
+		tab.setClosable(true);
+		tabPane.getTabs().add(tab);
+		tabPane.getSelectionModel().select(tab);
+
+		principalBorderPane.setCenter(tabPane);
+
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import util.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="353.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.lancamento.LancamentoMaterialController">
+   <children>
+      <Button fx:id="btPesquisar" layoutX="97.0" layoutY="32.0" mnemonicParsing="false" onAction="#pesquisar" prefHeight="25.0" prefWidth="75.0" text="Pesquisar" />
+      <TextField fx:id="txtId" disable="true" editable="false" layoutX="23.0" layoutY="32.0" mouseTransparent="true" prefHeight="25.0" prefWidth="66.0" />
+      <Button layoutX="13.0" layoutY="309.0" mnemonicParsing="false" onAction="#lancar" prefHeight="25.0" prefWidth="83.0" text="Lançar" />
+      <Button layoutX="104.0" layoutY="309.0" mnemonicParsing="false" onAction="#novoLancamento" prefHeight="25.0" prefWidth="118.0" text="Novo Lançamento" />
+      <Button layoutX="468.0" layoutY="309.0" mnemonicParsing="false" onAction="#excluir" prefHeight="25.0" prefWidth="118.0" text="Excluir Lançamento" />
+      <Text layoutX="23.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID do Lançamento:" />
+      <Text layoutX="185.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Material:" />
+      <TextField fx:id="txtMaterial" layoutX="183.0" layoutY="32.0" prefHeight="25.0" prefWidth="165.0" />
+      <TextField fx:id="txtQuantidade" layoutX="23.0" layoutY="87.0" prefHeight="25.0" prefWidth="110.0" />
+      <Text layoutX="26.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Quantidade:" />
+      <DatePicker fx:id="dtLancamento" disable="true" editable="false" layoutX="436.0" layoutY="32.0" prefHeight="25.0" prefWidth="135.0" />
+      <Text layoutX="436.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Data do Lançamento:" />
+      <Button fx:id="btPesquisar1" layoutX="355.0" layoutY="32.0" mnemonicParsing="false" onAction="#pesquisarMaterial" prefHeight="25.0" prefWidth="75.0" text="Pesquisar" />
+   </children>
+</AnchorPane>

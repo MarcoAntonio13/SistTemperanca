@@ -47,7 +47,7 @@
                   <Menu mnemonicParsing="false" text="Lançamento">
                      <items>
                         <MenuItem mnemonicParsing="false" text="Lançamento de Venda" />
-                        <MenuItem mnemonicParsing="false" text="Lançamento de Material" />
+                        <MenuItem mnemonicParsing="false" onAction="#abrirLancamentoMaterial" text="Lançamento de Material" />
                      </items>
                   </Menu>
               </menus>
