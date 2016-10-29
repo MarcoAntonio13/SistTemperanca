@@ -1,6 +1,8 @@
 package controller.cadastro;
 
+import java.net.URL;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import org.w3c.dom.ls.LSInput;
 
@@ -13,16 +15,18 @@ import dao.jdbc.JDBCProdutoDAO;
 import dao.jdbc.JDBCReceitaDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.Endereco;
 import model.Material;
 import model.Produto;
 import model.Receita;
 
-public class CadastroTemperoController {
+public class CadastroTemperoController implements Initializable {
 
 	@FXML
 	private Button btPesquisarMaterial;
@@ -64,6 +68,8 @@ public class CadastroTemperoController {
 	private Material materialSelecionado;
 
 	private Produto produtoSelecionado;
+	
+	private Receita receitaSelecionada;
 
 	@FXML
 	void pesquisar(ActionEvent event) throws Exception {
@@ -117,6 +123,7 @@ public class CadastroTemperoController {
 	private void limpaCamposMaterial() {
 		txtMaterial.setText("");
 		txtPesoMaterial.setText("");
+		materialSelecionado = null;
 	}
 
 	@FXML
@@ -195,27 +202,76 @@ public class CadastroTemperoController {
 	}
 
 	private void posicionaMaterial(Material material) {
+		
+		if(material.getNome()!=null&&!material.getNome().isEmpty())
 		txtMaterial.setText(material.getNome());
+
+		materialSelecionado = material;
+	}
+
+	private void posicionaReceita(Receita receita) {
+		if(!receita.getMaterial().getNome().isEmpty()&& receita.getMaterial().getNome()!=null)
+		txtMaterial.setText(receita.getMaterial().getNome());
+		
+		if(receita.getMaterial().getPeso()!=null)
+		txtPesoMaterial.setText(Double.toString(receita.getMaterial().getPeso()));
+		
+		receitaSelecionada = receita;
+		materialSelecionado = receita.getMaterial();
+		produtoSelecionado = receita.getProduto();
 	}
 
 	@FXML
 	void adicionarMaterial(ActionEvent event) {
-		Receita receita = new Receita();
-		// System.out.println("Material Selecionado
-		// ID:"+materialSelecionado.getId());
-		if (materialSelecionado != null)
-			receita.setMaterial(materialSelecionado);
-
-		if (!txtPesoMaterial.getText().isEmpty())
-			receita.setPesoMaterial(Double.parseDouble(txtPesoMaterial.getText()));
-
-		// System.out.println("Material Selecionado
-		// ID:"+produtoSelecionado.getId());
-		if (produtoSelecionado != null)
-			receita.setProduto(produtoSelecionado);
+		Receita receita = montaReceita();
 
 		listReceita.getItems().add(receita);
 		limpaCamposMaterial();
+	}
+	
+	@FXML
+	private void salvarMaterial() throws Exception{
+		if(receitaSelecionada!=null){
+	    	listReceita.getItems().remove(receitaSelecionada);
+	    	Receita receitaEditada = montaReceita();
+	    	receitaEditada.setId(receitaSelecionada.getId());
+	    	listReceita.getItems().add(receitaEditada);
+	    	receitaSelecionada = null;
+	    	limpaCamposMaterial();
+	    	}else{
+	    		new AlertaApp().start(new Stage(), "Selecione um Material para Editar!");
+	    	}
+	}
+
+	private Receita montaReceita() {
+		Receita receita = new Receita();
+		
+		if(materialSelecionado!=null)
+			receita.setMaterial(materialSelecionado);
+		
+		if(txtPesoMaterial.getText()!=null&&!txtPesoMaterial.getText().isEmpty())
+			receita.setPesoMaterial(Double.parseDouble(txtPesoMaterial.getText()));
+		
+		return receita;
+	}
+	
+	@FXML
+	private void excluirMaterial(){
+		if(produtoSelecionado!=null)
+		produtoSelecionado.getReceitas().remove(listReceita.getSelectionModel().getSelectedItem());
+    	System.out.println(listReceita.getSelectionModel().getSelectedItem());
+    	listReceita.getItems().remove(listReceita.getSelectionModel().getSelectedItem());
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		listReceita.setOnMouseClicked(value->{
+			if(value.getClickCount() == 2 ){
+				if(listReceita.getSelectionModel().getSelectedItem()!=null)
+					posicionaReceita(listReceita.getSelectionModel().getSelectedItem());
+			}
+		});
+		
 	}
 
 }

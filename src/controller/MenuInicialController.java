@@ -81,6 +81,19 @@ public class MenuInicialController implements Initializable {
 		principalBorderPane.setCenter(tabPane);
 
 	}
+	
+	@FXML
+	void abrirVenda(ActionEvent event) throws IOException {
+		AnchorPane painelCliente = FXMLLoader.load(getClass().getResource("/view/VendaView.fxml"));
+		Tab tab = new Tab("Venda");
+		tab.setContent(painelCliente);
+		tab.setClosable(true);
+		tabPane.getTabs().add(tab);
+		tabPane.getSelectionModel().select(tab);
+
+		principalBorderPane.setCenter(tabPane);
+
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

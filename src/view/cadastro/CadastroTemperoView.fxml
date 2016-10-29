@@ -21,7 +21,14 @@
       <TextField fx:id="txtNome" layoutX="183.0" layoutY="32.0" prefHeight="25.0" prefWidth="239.0" />
       <Text layoutX="247.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor da Produçao:" />
       <TextField fx:id="txtValorProducao" layoutX="247.0" layoutY="275.0" prefHeight="25.0" prefWidth="110.0" />
-      <ListView fx:id="listReceita" layoutX="23.0" layoutY="175.0" prefHeight="125.0" prefWidth="218.0" />
+      <ListView fx:id="listReceita" layoutX="23.0" layoutY="175.0" prefHeight="125.0" prefWidth="218.0">
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#excluirMaterial" text="Excluir" />
+              </items>
+            </ContextMenu>
+         </contextMenu></ListView>
       <Text layoutX="23.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Materiais:" />
       <TextField fx:id="txtMaterial" disable="true" layoutX="23.0" layoutY="87.0" prefHeight="25.0" prefWidth="110.0" />
       <Text layoutX="26.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Material:" />
@@ -31,5 +38,6 @@
       <Button fx:id="btAdicionarMaterial" layoutX="141.0" layoutY="130.0" mnemonicParsing="false" onAction="#adicionarMaterial" prefHeight="25.0" prefWidth="75.0" text="Adicionar+" />
       <Text layoutX="435.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Peso:" />
       <TextField fx:id="txtPesoProduto" layoutX="435.0" layoutY="84.0" prefHeight="25.0" prefWidth="110.0" />
+      <Button fx:id="btAdicionarMaterial1" layoutX="228.0" layoutY="130.0" mnemonicParsing="false" onAction="#salvarMaterial" prefHeight="25.0" prefWidth="100.0" text="Salvar Material" />
    </children>
 </AnchorPane>
