@@ -213,8 +213,9 @@ public class CadastroTemperoController implements Initializable {
 		if(!receita.getMaterial().getNome().isEmpty()&& receita.getMaterial().getNome()!=null)
 		txtMaterial.setText(receita.getMaterial().getNome());
 		
-		if(receita.getMaterial().getPeso()!=null)
-		txtPesoMaterial.setText(Double.toString(receita.getMaterial().getPeso()));
+		if(receita.getPesoMaterial()!=null){
+		txtPesoMaterial.setText(String.valueOf(receita.getPesoMaterial()));
+		}
 		
 		receitaSelecionada = receita;
 		materialSelecionado = receita.getMaterial();

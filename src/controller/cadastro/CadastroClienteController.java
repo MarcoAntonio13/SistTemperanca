@@ -211,6 +211,7 @@ public class CadastroClienteController implements Initializable {
     
     @FXML
     private void excluirEndereco() throws Exception{
+    	if(clienteSelecionado != null)
     	clienteSelecionado.getEnderecos().remove(listEndereco.getSelectionModel().getSelectedItem());
     	System.out.println(listEndereco.getSelectionModel().getSelectedItem());
     	listEndereco.getItems().remove(listEndereco.getSelectionModel().getSelectedItem());

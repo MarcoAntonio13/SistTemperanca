@@ -2,10 +2,13 @@ package dao.jdbc;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import dao.dao.EstoqueProdutoDAO;
+import model.EstoqueMaterial;
 import model.EstoqueProduto;
 
 public class JDBCEstoqueProdutoDAO implements EstoqueProdutoDAO {
@@ -55,6 +58,8 @@ public class JDBCEstoqueProdutoDAO implements EstoqueProdutoDAO {
 		session.getTransaction().commit();
 		return estoqueProduto;
 	}
+	
+
 
 	@Override
 	public void editar(EstoqueProduto estoqueProduto) {

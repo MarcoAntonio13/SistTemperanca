@@ -8,6 +8,8 @@ import model.Despesa;
 import model.Endereco;
 import model.EstoqueMaterial;
 import model.EstoqueProduto;
+import model.EstoqueTotalMaterial;
+import model.EstoqueTotalProduto;
 import model.FormaPagamento;
 import model.Fornecedor;
 import model.Material;
@@ -49,6 +51,8 @@ public class HibernateStarter {
 				.addAnnotatedClass(Venda.class)
 				.addAnnotatedClass(EstoqueMaterial.class)
 				.addAnnotatedClass(EstoqueProduto.class)
+				.addAnnotatedClass(EstoqueTotalMaterial.class)
+				.addAnnotatedClass(EstoqueTotalProduto.class)
 				.buildSessionFactory();
 		}
 		return factory;

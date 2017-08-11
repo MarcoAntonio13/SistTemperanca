@@ -74,7 +74,7 @@ public class Material {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return this.nome;
+		return this.nome+" Peso: "+String.valueOf(this.peso);
 	}
 
 }

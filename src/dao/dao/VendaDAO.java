@@ -8,6 +8,6 @@ public interface VendaDAO {
 	public void inserir(Venda venda);
 	public void remover(int id);
 	public List<Venda> listar();
-	public Venda venda(int id);
+	public Venda buscar(int id);
 	public void editar(Venda venda);
 }

@@ -1,9 +1,11 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,40 +14,45 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
-
-
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 public class Venda {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Double valorTotal;
-	
-	@ManyToOne
+
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Cliente cliente;
-	
+
 	@ManyToOne
 	private FormaPagamento formaPagamento;
-	private Calendar data;
-	
-	@OneToMany
-	private List<Produto> produtos;
+
+	private LocalDate data;
+
+	@OneToMany(fetch=FetchType.EAGER)
+	@Fetch(value = FetchMode.SUBSELECT)
+	private List<EstoqueProduto> produtos;
 
 	public Venda() {
 
 	}
-
-	public Venda(Double valorTotal, Cliente cliente, FormaPagamento formaPagamento, Calendar data,
-			List<Produto> produtos) {
+	
+	
+	public Venda(Integer id, Double valorTotal, Cliente cliente, FormaPagamento formaPagamento, LocalDate data,
+			List<EstoqueProduto> produtos) {
 		super();
+		this.id = id;
 		this.valorTotal = valorTotal;
 		this.cliente = cliente;
 		this.formaPagamento = formaPagamento;
 		this.data = data;
 		this.produtos = produtos;
 	}
+
 
 	public Integer getId() {
 		return id;
@@ -79,20 +86,30 @@ public class Venda {
 		this.formaPagamento = formaPagamento;
 	}
 
-	public Calendar getData() {
+	public LocalDate getData() {
 		return data;
 	}
 
-	public void setData(Calendar data) {
+	public void setData(LocalDate data) {
 		this.data = data;
 	}
+	
+	
 
-	public List<Produto> getProdutos() {
+	public List<EstoqueProduto> getProdutos() {
 		return produtos;
 	}
 
-	public void setProdutos(List<Produto> produtos) {
+
+	public void setProdutos(List<EstoqueProduto> produtos) {
 		this.produtos = produtos;
 	}
 
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return cliente.getRazaoSocial() + " Data: " + data.getDayOfMonth() + "/" + data.getMonthValue() + "/"
+				+ data.getYear();
+	}
 }

@@ -2,6 +2,8 @@ package controller.lancamento;
 
 import java.time.LocalDate;
 
+import javax.persistence.NoResultException;
+
 import org.hibernate.loader.entity.EntityJoinWalker;
 
 import app.AlertaApp;
@@ -12,6 +14,7 @@ import controller.pesquisa.TelaPesquisaLancamentoMaterialController;
 import controller.pesquisa.TelaPesquisaMaterialController;
 import controller.pesquisa.TelaPesquisaTemperoController;
 import dao.jdbc.JDBCEstoqueMaterialDAO;
+import dao.jdbc.JDBCEstoqueTotalMaterialDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -20,6 +23,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.EstoqueMaterial;
+import model.EstoqueTotalMaterial;
 import model.Material;
 import model.Produto;
 
@@ -45,7 +49,8 @@ public class LancamentoMaterialController {
 	private Material materialSelecionado;
 	
 	private JDBCEstoqueMaterialDAO estoqueMaterialDAO = new JDBCEstoqueMaterialDAO();
-
+	
+	private JDBCEstoqueTotalMaterialDAO estoqueTotalMaterialDAO = new JDBCEstoqueTotalMaterialDAO();
 	@FXML
 	void pesquisar(ActionEvent event) throws Exception {
 		Stage stageTelaPesquisa = new Stage();
@@ -91,15 +96,27 @@ public class LancamentoMaterialController {
 			EstoqueMaterial estoqueMaterial = new EstoqueMaterial();
 			estoqueMaterial = montaEstoqueMaterial();
 			estoqueMaterialDAO.inserir(estoqueMaterial);
+			
+			if(estoqueTotalMaterialDAO.buscarPorIdMaterial(estoqueMaterial.getMaterial().getId())!= null){
+				EstoqueTotalMaterial estoque = estoqueTotalMaterialDAO.buscarPorIdMaterial(estoqueMaterial.getMaterial().getId());
+				estoque.setQuantidadeTotal(estoque.getQuantidadeTotal()+estoqueMaterial.getQuantidade());
+				estoqueTotalMaterialDAO.editar(estoque);
+				
+			}else{
+				EstoqueTotalMaterial estoqueNovo = new EstoqueTotalMaterial();
+				estoqueNovo.setMaterial(estoqueMaterial.getMaterial());
+				System.out.println("Quantidade inicial: "+estoqueMaterial.getQuantidade());
+				estoqueNovo.setQuantidadeTotal(estoqueMaterial.getQuantidade());
+				estoqueTotalMaterialDAO.inserir(estoqueNovo);
+			}
+			
+			
 			txtId.setText(Integer.toString(estoqueMaterial.getId()));
 			dtLancamento.setValue(estoqueMaterial.getDataEntrada());
 			new AlertaApp().start(new Stage(), "Salvo com Sucesso!");
 
 		} else {
-			EstoqueMaterial estoqueMaterial = new EstoqueMaterial();
-			estoqueMaterial = montaEstoqueMaterial();
-			estoqueMaterialDAO.editar(estoqueMaterial);
-			new AlertaApp().start(new Stage(), "Alterado com Sucesso!");
+			new AlertaApp().start(new Stage(), "Já foi lançado!");
 
 		}
 	}

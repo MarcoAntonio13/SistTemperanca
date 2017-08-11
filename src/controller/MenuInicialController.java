@@ -107,6 +107,19 @@ public class MenuInicialController implements Initializable {
 		principalBorderPane.setCenter(tabPane);
 
 	}
+	
+	@FXML
+	void abrirProduzirTempero(ActionEvent event) throws IOException {
+		AnchorPane painelCliente = FXMLLoader.load(getClass().getResource("/view/ProduzirTemperoView.fxml"));
+		Tab tab = new Tab("Produzir Tempero");
+		tab.setContent(painelCliente);
+		tab.setClosable(true);
+		tabPane.getTabs().add(tab);
+		tabPane.getSelectionModel().select(tab);
+
+		principalBorderPane.setCenter(tabPane);
+
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {

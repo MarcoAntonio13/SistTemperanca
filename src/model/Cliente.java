@@ -14,24 +14,24 @@ import org.hibernate.annotations.CascadeType;
 
 @Entity
 public class Cliente {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private Long cnpj;
-	
-	@OneToMany(fetch=FetchType.EAGER)
-	@Cascade({CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.MERGE})
+
+	@OneToMany(fetch = FetchType.EAGER)
+	@Cascade({ CascadeType.SAVE_UPDATE, CascadeType.REMOVE, CascadeType.MERGE })
 	private List<Endereco> enderecos;
-	
-	@OneToMany(mappedBy="cliente")
+	//
+	@OneToMany(mappedBy = "cliente")
 	@Cascade(CascadeType.REMOVE)
 	private List<Venda> vendas;
-	
+
 	private String razaoSocial;
 	private Long telefone;
 	private String email;
-	
+
 	public Cliente() {
 
 	}
@@ -44,8 +44,6 @@ public class Cliente {
 		this.telefone = telefone;
 		this.email = email;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -71,11 +69,9 @@ public class Cliente {
 		this.razaoSocial = razaoSocial;
 	}
 
-
 	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
-
 
 	public void setEnderecos(List<Endereco> enderecos) {
 		this.enderecos = enderecos;
@@ -96,13 +92,11 @@ public class Cliente {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
 		return this.razaoSocial;
 	}
-	
-	
 
 }

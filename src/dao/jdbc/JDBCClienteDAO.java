@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 
 import dao.dao.ClienteDAO;
 import model.Cliente;
-import model.Fornecedor;
+
 
 public class JDBCClienteDAO implements ClienteDAO {
 	

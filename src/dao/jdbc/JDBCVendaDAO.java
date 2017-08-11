@@ -47,7 +47,7 @@ public class JDBCVendaDAO implements VendaDAO {
 	}
 
 	@Override
-	public Venda venda(int id) {
+	public Venda buscar(int id) {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		Venda venda = new Venda();
@@ -64,5 +64,19 @@ public class JDBCVendaDAO implements VendaDAO {
 		session.update(venda);
 		session.getTransaction().commit();		
 	}
+	
+	public List<Venda> listarPorRazaoSocialDoCliente(String razaoSocial) {
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		@SuppressWarnings("unchecked")
+		List<Venda> vendas = session.createQuery("Select v from Venda v where v.cliente.razaoSocial LIKE '%"+razaoSocial+"%'").getResultList();
+		session.getTransaction().commit();
+		return vendas;
+	}
+
+	
+	
+	
+	
 
 }
